@@ -1,6 +1,13 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/bookmark'
+require_relative 'lib/database_connection'
+
+if ENV['ENVIRONMENT'] == 'test'
+  DatabaseConnection.setup('bookmark_manager_test')
+else
+  DatabaseConnection.setup('bookmark_manager')
+end 
 
 class BookmarkManager < Sinatra::Base
   set :method_override, true # make a note about this and corrosponding in the erb file
