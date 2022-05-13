@@ -8,12 +8,24 @@ class BookmarkManager < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  enable :sessions
+
   get '/bookmarks/create' do
     erb :'bookmarks/create'
   end
 
   delete '/bookmarks/:id' do
     Bookmark.delete(id: params[:id])
+    redirect '/bookmarks'
+  end
+
+  patch '/bookmarks/:id' do
+    session[:id] = params[:id]
+    erb :'bookmarks/update'
+  end
+
+  post '/bookmarks/update' do
+    Bookmark.update(id: session[:id], url: params[:url], title: params[:title])
     redirect '/bookmarks'
   end
 

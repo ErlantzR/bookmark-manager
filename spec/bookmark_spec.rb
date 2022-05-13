@@ -44,6 +44,17 @@ describe Bookmark do
       expect(bookmarks.length).to eq 0
     end
   end
+
+  describe '#.update' do
+    it 'updates a bookmark' do
+      bookmark = Bookmark.create(url: "http://www.reddit.com/", title: 'Reddit')
+      Bookmark.update(id: bookmark.id, url: 'http://www.google.com', title: 'Google')
+      bookmarks = Bookmark.all
+      expect(bookmarks.first.id).to eq bookmark.id
+      expect(bookmarks.first.title).to eq 'Google'
+      expect(bookmarks.first.url).to eq 'http://www.google.com'
+    end
+  end
 end
 
 # Test drive an update to the .all method of your Bookmark model, to do the following:
