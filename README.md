@@ -11,6 +11,10 @@ I'd like to see a list of my bookmarks
 As a user
 To be able to update my list of bookmarks
 I'd like to create new bookmarks and add them to the list
+---
+As a user
+To be able to remove old or not useful bookmarks
+I'd like to delete a bookmark
 ```
 
 

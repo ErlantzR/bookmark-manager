@@ -36,8 +36,13 @@ describe Bookmark do
     end
   end
 
-  desribe '#.delete' do
-    
+  describe '#.delete' do
+    it 'removes a bookmark' do
+      bookmark = Bookmark.create(url: "http://www.reddit.com/", title: 'Reddit')
+      Bookmark.delete(id: bookmark.id)
+      bookmarks = Bookmark.all
+      expect(bookmarks.length).to eq 0
+    end
   end
 end
 
